@@ -1,3 +1,7 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import React from "react";
+
 import TagCard from "@/components/cards/TagCard";
 import { Preview } from "@/components/editor/Preview";
 import Metric from "@/components/Metric";
@@ -5,9 +9,7 @@ import UserAvatar from "@/components/UserAvatar";
 import ROUTES from "@/constants/routes";
 import { getQuestion } from "@/lib/actions/question.action";
 import { formatNumber, getTimeStamp } from "@/lib/utils";
-import Link from "next/link";
-import { redirect } from "next/navigation";
-import React from "react";
+
 import View from "../view";
 
 const QuestionDetails = async ({ params }: RouteParams) => {
