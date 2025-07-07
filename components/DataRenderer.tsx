@@ -21,6 +21,7 @@ interface Props<T> {
       href: string;
     };
   };
+  // eslint-disable-next-line no-unused-vars
   render: (data: T[]) => React.ReactNode;
 }
 
