@@ -1,81 +1,138 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { techMap } from "@/constants/techMap";
+import { BADGE_CRITERIA } from "@/constants";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const techDescriptionMap: { [key: string]: string } = {
-  javascript:
-    "JavaScript is a powerful language for building dynamic, interactive, and modern web applications.",
-  typescript:
-    "TypeScript adds strong typing to JavaScript, making it great for scalable and maintainable applications.",
-  react:
-    "React is a popular library for building fast and modular user interfaces.",
-  nextjs:
-    "Next.js is a React framework for server-side rendering and building optimized web applications.",
-  nodejs:
-    "Node.js enables server-side JavaScript, allowing you to create fast, scalable network applications.",
-  python:
-    "Python is a versatile language known for readability and a vast ecosystem, often used for data science and automation.",
-  java: "Java is an object-oriented language commonly used for enterprise applications and Android development.",
-  cplusplus:
-    "C++ is a high-performance language suitable for system software, game engines, and complex applications.",
-  git: "Git is a version control system that tracks changes in source code during software development.",
-  docker:
-    "Docker is a container platform that simplifies application deployment and environment management.",
-  mongodb:
-    "MongoDB is a NoSQL database for handling large volumes of flexible, document-based data.",
-  mysql:
-    "MySQL is a popular relational database, known for reliability and ease of use.",
-  postgresql:
-    "PostgreSQL is a robust open-source relational database with advanced features and strong SQL compliance.",
-  aws: "AWS is a comprehensive cloud platform offering a wide range of services for deployment, storage, and more.",
-};
+export function getDeviconClassName(techName: string) {
+  const normalizedTech = techName.replace(/[ .]/g, "").toLowerCase();
 
-export const getTechDescription = (techName: string) => {
-  const normalizedTechName = techName.replace(/[ .]/g, "").toLowerCase();
-  return techDescriptionMap[normalizedTechName]
-    ? techDescriptionMap[normalizedTechName]
-    : `${techName} is a technology or tool widely used in web development, providing valuable features and capabilities.`;
-};
+  // Dictionary mapping possible technology names to Devicon class names
+  const techMap: { [key: string]: string } = {
+    // JavaScript variations
+    javascript: "devicon-javascript-plain",
+    js: "devicon-javascript-plain",
 
-export const getDeviconClassName = (techName: string) => {
-  const normalizedTechName = techName.replace(/[ .]/g, "").toLowerCase();
+    // TypeScript variations
+    typescript: "devicon-typescript-plain",
+    ts: "devicon-typescript-plain",
 
-  return techMap[normalizedTechName]
-    ? `${techMap[normalizedTechName]} colored`
-    : "devicon-devicon-plain";
-};
+    // React variations
+    react: "devicon-react-original",
+    reactjs: "devicon-react-original",
 
-export const getTimeStamp = (createdAt: Date) => {
-  const date = new Date(createdAt);
-  const now = new Date();
+    // Next.js variations
+    nextjs: "devicon-nextjs-plain",
+    next: "devicon-nextjs-plain",
 
-  const secondsAgo = Math.floor((now.getTime() - date.getTime()) / 1000);
+    // Node.js variations
+    nodejs: "devicon-nodejs-plain",
+    node: "devicon-nodejs-plain",
 
-  const units = [
-    { label: "year", seconds: 31536000 },
-    { label: "month", seconds: 2592000 },
-    { label: "week", seconds: 604800 },
-    { label: "day", seconds: 86400 },
-    { label: "hour", seconds: 3600 },
-    { label: "minute", seconds: 60 },
-    { label: "second", seconds: 1 },
-  ];
+    // Bun.js variations
+    bun: "devicon-bun-plain",
+    bunjs: "devicon-bun-plain",
 
-  for (const unit of units) {
-    const interval = Math.floor(secondsAgo / unit.seconds);
-    if (interval >= 1) {
-      return `${interval} ${unit.label}${interval > 1 ? "s" : ""} ago`;
-    }
-  }
-  return "just now";
-};
+    // Deno.js variations
+    deno: "devicon-denojs-original",
+    denojs: "devicon-denojs-plain",
 
-export const formatNumber = (number: number) => {
+    // Python variations
+    python: "devicon-python-plain",
+
+    // Java variations
+    java: "devicon-java-plain",
+
+    // C++ variations
+    "c++": "devicon-cplusplus-plain",
+    cpp: "devicon-cplusplus-plain",
+
+    // C# variations
+    "c#": "devicon-csharp-plain",
+    csharp: "devicon-csharp-plain",
+
+    // PHP variations
+    php: "devicon-php-plain",
+
+    // HTML variations
+    html: "devicon-html5-plain",
+    html5: "devicon-html5-plain",
+
+    // CSS variations
+    css: "devicon-css3-plain",
+    css3: "devicon-css3-plain",
+
+    // Git variations
+    git: "devicon-git-plain",
+
+    // Docker variations
+    docker: "devicon-docker-plain",
+
+    // MongoDB variations
+    mongodb: "devicon-mongodb-plain",
+    mongo: "devicon-mongodb-plain",
+
+    // MySQL variations
+    mysql: "devicon-mysql-plain",
+
+    // PostgreSQL variations
+    postgresql: "devicon-postgresql-plain",
+    postgres: "devicon-postgresql-plain",
+
+    // AWS variations
+    aws: "devicon-amazonwebservices-original",
+    "amazon web services": "devicon-amazonwebservices-original",
+
+    // Tailwind CSS variations
+    tailwind: "devicon-tailwindcss-original",
+    tailwindcss: "devicon-tailwindcss-original",
+  };
+
+  return `${techMap[normalizedTech] || "devicon-devicon-plain"} colored`;
+}
+
+export function getTechDescription(techName: string): string {
+  const normalizedTech = techName.replace(/[ .]/g, "").toLowerCase();
+
+  // Mapping technology names to descriptions
+  const techDescriptionMap: { [key: string]: string } = {
+    javascript:
+      "JavaScript is a powerful language for building dynamic, interactive, and modern web applications.",
+    typescript:
+      "TypeScript adds strong typing to JavaScript, making it great for scalable and maintainable applications.",
+    react:
+      "React is a popular library for building fast, component-based user interfaces and web applications.",
+    nextjs:
+      "Next.js is a React framework for building fast, SEO-friendly, and production-grade web applications.",
+    nodejs:
+      "Node.js is a runtime for building fast and scalable server-side applications using JavaScript.",
+    python:
+      "Python is a beginner-friendly language known for its versatility and simplicity in various fields.",
+    java: "Java is a versatile, cross-platform language widely used in enterprise and Android development.",
+    "c++":
+      "C++ is a high-performance language ideal for system programming, games, and large-scale applications.",
+    git: "Git is a version control system that helps developers track changes and collaborate on code efficiently.",
+    docker:
+      "Docker simplifies app deployment by containerizing environments, ensuring consistency across platforms.",
+    mongodb:
+      "MongoDB is a flexible NoSQL database ideal for handling unstructured data and scalable applications.",
+    mysql:
+      "MySQL is a popular open-source relational database management system known for its stability and performance.",
+    postgresql:
+      "PostgreSQL is a powerful open-source SQL database known for its scalability and robustness.",
+    aws: "Amazon Web Services (AWS) is a cloud computing platform that offers a wide range of services for building, deploying, and managing web and mobile applications.",
+  };
+
+  return (
+    techDescriptionMap[normalizedTech] ||
+    `${techName} is a technology or tool widely used in software development, providing valuable features and capabilities.`
+  );
+}
+
+export function formatNumber(number: number) {
   if (number >= 1000000) {
     return (number / 1000000).toFixed(1) + "M";
   } else if (number >= 1000) {
@@ -83,4 +140,57 @@ export const formatNumber = (number: number) => {
   } else {
     return number.toString();
   }
+}
+
+export const getTimeStamp = (createdAt: Date): string => {
+  const date = new Date(createdAt);
+  const now = new Date();
+
+  const diffMilliseconds = now.getTime() - date.getTime();
+  const diffSeconds = Math.round(diffMilliseconds / 1000);
+  if (diffSeconds < 60) {
+    return `${diffSeconds} seconds ago`;
+  }
+
+  const diffMinutes = Math.round(diffSeconds / 60);
+  if (diffMinutes < 60) {
+    return `${diffMinutes} mins ago`;
+  }
+
+  const diffHours = Math.round(diffMinutes / 60);
+  if (diffHours < 24) {
+    return `${diffHours} hours ago`;
+  }
+
+  const diffDays = Math.round(diffHours / 24);
+
+  return `${diffDays} days ago`;
 };
+
+export function assignBadges(params: {
+  criteria: {
+    type: keyof typeof BADGE_CRITERIA;
+    count: number;
+  }[];
+}) {
+  const badgeCounts: Badges = {
+    GOLD: 0,
+    SILVER: 0,
+    BRONZE: 0,
+  };
+
+  const { criteria } = params;
+
+  criteria.forEach((item) => {
+    const { type, count } = item;
+    const badgeLevels = BADGE_CRITERIA[type];
+
+    Object.keys(badgeLevels).forEach((level) => {
+      if (count >= badgeLevels[level as keyof typeof badgeLevels]) {
+        badgeCounts[level as keyof Badges] += 1;
+      }
+    });
+  });
+
+  return badgeCounts;
+}
