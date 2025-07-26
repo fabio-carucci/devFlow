@@ -21,7 +21,7 @@ interface Props<T> {
       href: string;
     };
   };
-  // eslint-disable-next-line no-unused-vars
+
   render: (data: T[]) => React.ReactNode;
 }
 
@@ -98,7 +98,7 @@ const DataRenderer = <T,>({
             ? JSON.stringify(error.details, null, 2)
             : DEFAULT_ERROR.message
         }
-        button={DEFAULT_ERROR.button}
+        button={empty.button}
       />
     );
   }
