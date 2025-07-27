@@ -12,7 +12,6 @@ interface Props {
   href?: string;
   textStyles: string;
   imgStyles?: string;
-  isAuthor?: boolean;
   titleStyles?: string;
 }
 
@@ -24,7 +23,6 @@ const Metric = ({
   href,
   textStyles,
   imgStyles,
-  isAuthor,
   titleStyles,
 }: Props) => {
   const metricContent = (

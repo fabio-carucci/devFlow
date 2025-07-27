@@ -28,7 +28,6 @@ import { toast } from "@/hooks/use-toast";
 interface AuthFormProps<T extends FieldValues> {
   schema: ZodType<T>;
   defaultValues: T;
-  // eslint-disable-next-line no-unused-vars
   onSubmit: (data: T) => Promise<ActionResponse>;
   formType: "SIGN_IN" | "SIGN_UP";
 }

@@ -38,7 +38,6 @@ import "./dark-editor.css";
 interface Props {
   value: string;
   editorRef: Ref<MDXEditorMethods> | null;
-  // eslint-disable-next-line no-unused-vars
   fieldChange: (value: string) => void;
 }
 
